@@ -31,3 +31,8 @@ button {
   font-size: 16px;
   cursor: pointer;
 }
+
+#result {
+  margin-top: 15px;
+  font-weight: bold;
+}

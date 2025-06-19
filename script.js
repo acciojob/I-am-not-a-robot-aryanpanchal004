@@ -1,33 +1,32 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding: 20px;
-}
+//your code here
+const images = document.querySelectorAll(".image-grid img");
+const verifyBtn = document.getElementById("verify-btn");
+const result = document.getElementById("result");
 
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 120px);
-  gap: 15px;
-  justify-content: center;
-  margin: 20px 0;
-}
+images.forEach(img => {
+  img.addEventListener("click", () => {
+    img.classList.toggle("selected");
+  });
+});
 
-.image-grid img {
-  width: 120px;
-  height: 120px;
-  cursor: pointer;
-  border: 3px solid transparent;
-  border-radius: 8px;
-  transition: 0.2s ease;
-}
+verifyBtn.addEventListener("click", () => {
+  const selected = document.querySelectorAll(".selected");
+  let correct = true;
 
-.image-grid img.selected {
-  border-color: blue;
-}
+  selected.forEach(img => {
+    if (img.dataset.type !== "car") {
+      correct = false;
+    }
+  });
 
-button {
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
+  const totalCars = [...images].filter(img => img.dataset.type === "car").length;
+  const selectedCars = [...selected].filter(img => img.dataset.type === "car").length;
+
+  if (correct && selected.length === totalCars) {
+    result.textContent = "✅ Verified!";
+    result.style.color = "green";
+  } else {
+    result.textContent = "❌ Try again!";
+    result.style.color = "red";
+  }
+});
