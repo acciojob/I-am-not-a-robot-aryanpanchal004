@@ -2,6 +2,11 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   padding: 20px;
+
+}
+h2{
+	color:blue;
+	backdrop-filter:greenyellow;
 }
 
 .image-grid {
